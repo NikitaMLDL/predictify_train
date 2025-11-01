@@ -30,11 +30,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install dvc[s3]  # добавь нужные remote'ы если используешь их
+          pip install dvc[s3]
           pip install flake8 black
 
       - name: Run lint (flake8)
         run: flake8 src/data src/features src/model src/setup
+
+      - name: Check MinIO endpoint
+        run: curl -v ${{ secrets.AWS_URL }}
 
       - name: Configure DVC remote
         run: |
