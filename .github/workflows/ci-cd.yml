@@ -37,7 +37,7 @@ jobs:
         run: flake8 src/data src/features src/model src/setup
 
       - name: Check MinIO endpoint
-        run: curl -v ${{ secrets.AWS_URL }}
+        run: curl -v "${{ secrets.AWS_URL }}"
 
       - name: Configure DVC remote
         run: |
