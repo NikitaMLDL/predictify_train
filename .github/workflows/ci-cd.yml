@@ -37,16 +37,12 @@ jobs:
         run: flake8 src/data src/features src/model src/setup
 
       - name: Configure DVC remote
-        env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            AWS_URL: ${{ secrets.AWS_URL }}
         run: |
             dvc remote remove dvcremote || echo "No remote to remove"
             dvc remote add -f dvcremote s3://mlflow-artifacts
-            dvc remote modify dvcremote access_key_id "$AWS_ACCESS_KEY_ID"
-            dvc remote modify dvcremote secret_access_key "$AWS_SECRET_ACCESS_KEY"
-            dvc remote modify dvcremote endpointurl "$AWS_URL"
+            dvc remote modify dvcremote access_key_id "${{ secrets.AWS_ACCESS_KEY_ID }}"
+            dvc remote modify dvcremote secret_access_key "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+            dvc remote modify dvcremote endpointurl "${{ secrets.AWS_URL }}"
 
       - name: Pull DVC data
         run: dvc pull
