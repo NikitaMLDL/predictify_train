@@ -38,6 +38,7 @@ jobs:
 
       - name: Configure DVC remote
         run: |
+            dvc init --no-scm || echo "DVC already initialized"
             dvc remote remove dvcremote || echo "No remote to remove"
             dvc remote add -f dvcremote s3://mlflow-artifacts
             dvc remote modify dvcremote access_key_id "${{ secrets.AWS_ACCESS_KEY_ID }}"
