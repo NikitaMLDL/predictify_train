@@ -36,9 +36,14 @@ jobs:
       - name: Run lint (flake8)
         run: flake8 src/data src/features src/model src/setup
 
-      - name: Pull DVC
+      - name: Configure DVC remote
         run: |
-          dvc pull || echo "No remote cache, skipping pull"
+            dvc remote add -f dvcremote s3://mlflow-artifacts/
+            dvc remote modify dvcremote access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            dvc remote modify dvcremote secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Pull DVC data
+        run: dvc pull
 
       - name: Run DVC pipeline
         run: dvc repro
