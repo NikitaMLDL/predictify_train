@@ -38,9 +38,11 @@ jobs:
 
       - name: Configure DVC remote
         run: |
-            dvc remote add -f dvcremote s3://mlflow-artifacts/
+            dvc remote remove dvcremote || echo "No remote to remove"
+            dvc remote add -f dvcremote s3://mlflow-artifacts
             dvc remote modify dvcremote access_key_id "${{ secrets.AWS_ACCESS_KEY_ID }}"
             dvc remote modify dvcremote secret_access_key "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+            dvc remote modify dvcremote endpointurl "${{ secrets.AWS_URL }}"
 
       - name: Pull DVC data
         run: dvc pull
