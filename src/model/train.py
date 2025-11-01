@@ -31,7 +31,7 @@ def train(train_path: str, model_output_path: str, n_estimators: int):
 
     model = RandomForestClassifier(n_estimators=n_estimators, random_state=42)
 
-    with mlflow.start_run() as run:
+    with mlflow.start_run():
         model.fit(X, y)
 
         # Логируем гиперпараметры и метрики
