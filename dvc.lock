@@ -1,0 +1,90 @@
+schema: '2.0'
+stages:
+  clean_data:
+    cmd: python src/data/clean_data.py data/raw/iris.csv 
+      data/processed/iris_clean.csv
+    deps:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 717820ef0af287ff346c5cabfb4c612c
+      size: 5107
+    - path: src/data/clean_data.py
+      hash: md5
+      md5: 512d3c14342fa047ff02fb24c6e8583b
+      size: 531
+    outs:
+    - path: data/processed/iris_clean.csv
+      hash: md5
+      md5: 77638d3f356111872605458eb6151444
+      size: 5258
+  add_features:
+    cmd: python src/features/add_features.py data/processed/iris_clean.csv 
+      data/processed/iris_features.csv
+    deps:
+    - path: data/processed/iris_clean.csv
+      hash: md5
+      md5: 77638d3f356111872605458eb6151444
+      size: 5258
+    - path: src/features/add_features.py
+      hash: md5
+      md5: 6f8950cd9244ffbbca0d99c41ec5b5e4
+      size: 892
+    outs:
+    - path: data/processed/iris_features.csv
+      hash: md5
+      md5: baadc923bc03b44cbe89571820ab4b87
+      size: 7370
+  prepare_dataset:
+    cmd: python src/model/prepare_datasets.py data/processed/iris_features.csv 
+      data/processed/train.csv data/processed/test.csv 0.2
+    deps:
+    - path: data/processed/iris_features.csv
+      hash: md5
+      md5: baadc923bc03b44cbe89571820ab4b87
+      size: 7370
+    - path: src/model/prepare_datasets.py
+      hash: md5
+      md5: ed5a15659f574058dd0b1a07ce277ce5
+      size: 1182
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 57f848fc99b8b553c7189373e061837f
+      size: 1470
+    - path: data/processed/train.csv
+      hash: md5
+      md5: a573180602d3e3f04db8753b16efad44
+      size: 5829
+  train:
+    cmd: python src/model/train.py data/processed/train.csv models/rf_model.pkl 
+      100
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: a573180602d3e3f04db8753b16efad44
+      size: 5829
+    - path: src/model/train.py
+      hash: md5
+      md5: 7cd932c8e5790da06d0224aa73f81f8b
+      size: 2761
+    outs:
+    - path: models/rf_model.pkl
+      hash: md5
+      md5: 2c356d153048ef6059ed65956f3ff4f7
+      size: 180897
+  evaluate:
+    cmd: python src/model/evaluate.py data/processed/test.csv 
+      models/rf_model.pkl
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 57f848fc99b8b553c7189373e061837f
+      size: 1470
+    - path: models/rf_model.pkl
+      hash: md5
+      md5: 2c356d153048ef6059ed65956f3ff4f7
+      size: 180897
+    - path: src/model/evaluate.py
+      hash: md5
+      md5: d1c677a90bbf30ed0066e7f2c0c241e1
+      size: 944

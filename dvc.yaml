@@ -1,0 +1,44 @@
+stages:
+  clean_data:
+    cmd: python src/data/clean_data.py data/raw/iris.csv data/processed/iris_clean.csv
+    deps:
+      - src/data/clean_data.py
+      - data/raw/iris.csv
+    outs:
+      - data/processed/iris_clean.csv
+
+  add_features:
+    cmd: python src/features/add_features.py data/processed/iris_clean.csv data/processed/iris_features.csv
+    deps:
+      - src/features/add_features.py
+      - data/processed/iris_clean.csv
+    outs:
+      - data/processed/iris_features.csv
+
+
+  prepare_dataset:
+    cmd: python src/model/prepare_datasets.py data/processed/iris_features.csv data/processed/train.csv data/processed/test.csv 0.2
+    deps:
+      - src/model/prepare_datasets.py
+      - data/processed/iris_features.csv
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+
+  train:
+    cmd: python src/model/train.py data/processed/train.csv models/rf_model.pkl 100
+    deps:
+      - src/model/train.py
+      - data/processed/train.csv
+    outs:
+      - models/rf_model.pkl
+
+
+  evaluate:
+    cmd: python src/model/evaluate.py data/processed/test.csv models/rf_model.pkl
+    deps:
+      - src/model/evaluate.py
+      - models/rf_model.pkl
+      - data/processed/test.csv
+
