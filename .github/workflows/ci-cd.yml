@@ -37,7 +37,7 @@ jobs:
         run: flake8 src/data src/features src/model src/setup
 
       - name: Debug AWS_URL
-        run: echo "URL is '${{ secrets.AWS_URL }}'"
+        run: echo "URL is '${{ secrets.AWS_URL }}', '${{ secrets.AWS_ACCESS_KEY_ID }}'"
 
       - name: Configure DVC remote
         run: |
