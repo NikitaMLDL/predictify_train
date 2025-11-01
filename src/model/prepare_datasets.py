@@ -12,9 +12,9 @@ def prepare_dataset(input_path: str, train_output_path: str, test_output_path: s
     """
     Split dataset into train and test sets.
 
-    INPUT_PATH: path to dataset with features  
-    TRAIN_OUTPUT_PATH: path to save train set  
-    TEST_OUTPUT_PATH: path to save test set  
+    INPUT_PATH: path to dataset with features
+    TRAIN_OUTPUT_PATH: path to save train set
+    TEST_OUTPUT_PATH: path to save test set
     TEST_SIZE: proportion of dataset to use as test set (e.g., 0.2)
     """
 
