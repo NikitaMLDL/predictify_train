@@ -50,6 +50,10 @@ jobs:
           dvc pull
           dvc pull data/raw/iris.csv.dvc
 
+      - name: Install src package
+        run: |
+          pip install -e .
+
       - name: Run DVC pipeline
         run: dvc repro
 
