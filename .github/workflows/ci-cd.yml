@@ -48,7 +48,7 @@ jobs:
       - name: Pull DVC data
         run: |
           dvc pull
-          dvc pull data/raw/Iris.csv.dvc
+          dvc pull data/raw/iris.csv.dvc
 
       - name: Run DVC pipeline
         run: dvc repro
