@@ -46,7 +46,9 @@ jobs:
             dvc remote modify dvcremote endpointurl "${{ secrets.AWS_URL }}"
 
       - name: Pull DVC data
-        run: dvc pull
+        run: |
+          dvc pull
+          dvc pull data/raw/Iris.csv.dvc
 
       - name: Run DVC pipeline
         run: dvc repro
