@@ -1,10 +1,10 @@
 schema: '2.0'
 stages:
   clean_data:
-    cmd: python src/data/clean_data.py data/raw/iris.csv 
+    cmd: python src/data/clean_data.py data/raw/Iris.csv 
       data/processed/iris_clean.csv
     deps:
-    - path: data/raw/iris.csv
+    - path: data/raw/Iris.csv
       hash: md5
       md5: 717820ef0af287ff346c5cabfb4c612c
       size: 5107

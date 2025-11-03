@@ -1,9 +1,9 @@
 stages:
   clean_data:
-    cmd: python src/data/clean_data.py data/raw/iris.csv data/processed/iris_clean.csv
+    cmd: python src/data/clean_data.py data/raw/Iris.csv data/processed/iris_clean.csv
     deps:
       - src/data/clean_data.py
-      - data/raw/iris.csv
+      - data/raw/Iris.csv
     outs:
       - data/processed/iris_clean.csv
 
