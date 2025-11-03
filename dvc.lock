@@ -6,8 +6,8 @@ stages:
     deps:
     - path: data/raw/iris.csv
       hash: md5
-      md5: 717820ef0af287ff346c5cabfb4c612c
-      size: 5107
+      md5: dc3732282e9d1747e02cff3513c2af41
+      size: 5167
     - path: src/data/clean_data.py
       hash: md5
       md5: 512d3c14342fa047ff02fb24c6e8583b
@@ -65,8 +65,8 @@ stages:
       size: 5829
     - path: src/model/train.py
       hash: md5
-      md5: 439d8d9812de81d2a27e4f35f0f5f6d4
-      size: 2846
+      md5: eab8859f6a29a25c22a7e9199dd26fa9
+      size: 2849
     outs:
     - path: models/rf_model.pkl
       hash: md5
