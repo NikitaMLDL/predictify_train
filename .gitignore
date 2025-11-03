@@ -1,7 +1,9 @@
 .env
 # Data
-/data/
-!data/raw/*.dvc
+/data/raw/*.csv
+/data/processed/
+/data/interim/
+/data/external/
 # Mac OS-specific storage files
 .DS_Store
 
