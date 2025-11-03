@@ -45,6 +45,10 @@ jobs:
             dvc remote modify dvcremote secret_access_key "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
             dvc remote modify dvcremote endpointurl "${{ secrets.AWS_URL }}"
 
+      - name: Set MLflow tracking URI
+        run: |
+          export MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI}
+
       - name: Pull DVC data
         run: |
           dvc pull
