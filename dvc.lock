@@ -1,10 +1,10 @@
 schema: '2.0'
 stages:
   clean_data:
-    cmd: python src/data/clean_data.py data/raw/Iris.csv 
+    cmd: python src/data/clean_data.py data/raw/iris.csv 
       data/processed/iris_clean.csv
     deps:
-    - path: data/raw/Iris.csv
+    - path: data/raw/iris.csv
       hash: md5
       md5: 717820ef0af287ff346c5cabfb4c612c
       size: 5107
@@ -65,8 +65,8 @@ stages:
       size: 5829
     - path: src/model/train.py
       hash: md5
-      md5: 4c53e80607d6233204900dc449da333a
-      size: 2754
+      md5: 439d8d9812de81d2a27e4f35f0f5f6d4
+      size: 2846
     outs:
     - path: models/rf_model.pkl
       hash: md5

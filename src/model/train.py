@@ -66,7 +66,7 @@ def train(train_path: str, model_output_path: str, n_estimators: int):
             version=latest_version,
             stage="Staging"
         )
-        click.echo("Проерка модели в MLflow Model Registry пройдена.")
+        click.echo("Проерка модели в MLflow Model Registry пройдена. v1")
         click.echo(f"✅ Модель IrisClassifier v{latest_version} сохранена и переведена в Staging.")
 
     click.echo(f"Модель сохранена локально в {model_output_path} и залогирована в MLflow.")
