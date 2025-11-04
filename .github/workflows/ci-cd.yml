@@ -62,8 +62,8 @@ jobs:
       - name: Run DVC pipeline
         run: dvc repro
 
-      - name: DVC push
-        run: dvc push
+      # - name: DVC push
+      #   run: dvc push
 
       - name: Show pipeline outputs
         run: ls -R data/processed models
