@@ -31,7 +31,7 @@ def evaluate(test_path: str, model_path: str):
     with mlflow.start_run():
         mlflow.log_metric("accuracy", acc)
 
-    click.echo(f"Accuracy on test set: {acc:.4f}!")
+    click.echo(f"Accuracy on test set: {acc:.4f}")
 
 
 if __name__ == "__main__":
